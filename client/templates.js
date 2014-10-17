@@ -48,7 +48,7 @@
 
     // pages/dashboard.jade compiled template
     templatizer["pages"]["dashboard"] = function tmpl_pages_dashboard() {
-        return '<section class="page pageOne"><h3>People container:</h3><ul data-hook="dashboard-elements" class="list-group"></ul></section>';
+	return '<section class="page pageOne"><ul data-hook="dashboard-elements" class="list-group"></ul></section>';
     };
 
     // pages/home.jade compiled template
