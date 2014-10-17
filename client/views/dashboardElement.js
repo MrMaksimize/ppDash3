@@ -3,30 +3,20 @@ var templates = require('../templates');
 
 
 module.exports = View.extend({
-    template: templates.includes.dashboardElement
- /*   bindings: {
-        'model.fullName': '[data-hook~=name]',
-        'model.avatar': {
-            type: 'attribute',
-            hook: 'avatar',
-            name: 'src'
-        },
-        'model.editUrl': {
-            type: 'attribute',
-            hook: 'action-edit',
-            name: 'href'
-        },
-        'model.viewUrl': {
-            type: 'attribute',
-            hook: 'name',
-            name: 'href'
-        }
-    },*/
-    /*events: {
-        'click [data-hook~=action-delete]': 'handleRemoveClick'
-    },
-    handleRemoveClick: function () {
-        this.model.destroy();
-        return false;
-    }*/
+  template: templates.includes.dashboardElement,
+  bindings: {
+    // Can also use hooks here for binding.
+    'model.title': '.chart-title',
+    'model.placeholder': '.chart-stage',
+    'model.widthSmall': { type: 'class', selector: '.chart-widget-wrapper' },
+    'model.widthMedium': { type: 'class', selector: '.chart-widget-wrapper' },
+    'model.widthLarge': { type: 'class', selector: '.chart-widget-wrapper' }
+  },
+  events: {
+      'click [data-hook~=action-delete]': 'handleRemoveClick'
+  },
+  handleRemoveClick: function () {
+      this.model.destroy();
+      return false;
+  }
 });

@@ -28,7 +28,7 @@
 
     // includes/dashboardElement.jade compiled template
     templatizer["includes"]["dashboardElement"] = function tmpl_includes_dashboardElement() {
-        return '<div class="col-sm-6 col-md-4"><div class="chart-wrapper"><div class="chart-title">Cell Title</div><div class="chart-stage">Placeholder</div><div class="chart-notes">Notes</div></div></div>';
+        return '<div class="chart-widget-wrapper"><div class="chart-wrapper"><div class="chart-title">Cell Title</div><div class="chart-stage">Placeholder</div><div class="chart-notes">Notes</div></div></div>';
     };
 
     // includes/formInput.jade compiled template

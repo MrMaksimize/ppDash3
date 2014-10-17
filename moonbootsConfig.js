@@ -33,6 +33,8 @@ module.exports = {
         // Specify the stylesheets we want to bundle
         stylesheets: [
             cssDir + '/bootstrap.css',
+            cssDir + '/cosmo.css',
+            cssDir + '/keen.dashboard.css',
             cssDir + '/app.css'
         ],
         beforeBuildJS: function () {
