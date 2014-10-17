@@ -1,5 +1,5 @@
 var Collection = require('ampersand-rest-collection');
-var Person = require('./person');
+var Person = require('../models/person');
 
 
 module.exports = Collection.extend({

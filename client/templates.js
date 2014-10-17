@@ -27,7 +27,7 @@
 
     // includes/dashboardElement.jade compiled template
     templatizer["includes"]["dashboardElement"] = function tmpl_includes_dashboardElement() {
-        return '<div class="col-sm-6 col-md-4"><div class="chart-wrapper"><div class="chart-title"><Cell>Title</Cell></div><div class="chart-stage"><Placeholder></Placeholder></div><div class="chart-notes"><Notes></Notes></div></div></div>';
+        return '<div class="col-sm-6 col-md-4"><div class="chart-wrapper"><div class="chart-title">Cell Title</div><div class="chart-stage">Placeholder</div><div class="chart-notes">Notes</div></div></div>';
     };
 
     // includes/formInput.jade compiled template
@@ -42,6 +42,11 @@
 
     // pages/collectionDemo.jade compiled template
     templatizer["pages"]["collectionDemo"] = function tmpl_pages_collectionDemo() {
+        return '<section class="page pageOne"><h2>Collection demo</h2><p>Intelligently rendering collections can be a bit tricky. </p><p><a href="https://github.com/ampersandjs/ampersand-view">ampersand-view\'s</a> <code>renderCollection()</code> method makes it simple.</p><p>The only code required to manage the collection is:</p><pre><code>this.renderCollection(\n   this.collection, \n   PersonView, \n   this.queryByHook(\'people-list\')\n);</code></pre><h3>People container:</h3><ul data-hook="people-list" class="list-group"></ul><p>Try it by clicking the buttons</p><div class="buttons btn-group"><button data-hook="reset" class="btn btn-default">.reset() </button><button data-hook="fetch" class="btn btn-default">.fetch() </button><button data-hook="shuffle" class="btn btn-default">.shuffle() </button><a href="/person/add" class="btn btn-default">Add Person</a></div><p>Events are always managed so you don\'t get any leaks.</p></section>';
+    };
+
+    // pages/dashboard.jade compiled template
+    templatizer["pages"]["dashboard"] = function tmpl_pages_dashboard() {
         return '<section class="page pageOne"><h2>Collection demo</h2><p>Intelligently rendering collections can be a bit tricky. </p><p><a href="https://github.com/ampersandjs/ampersand-view">ampersand-view\'s</a> <code>renderCollection()</code> method makes it simple.</p><p>The only code required to manage the collection is:</p><pre><code>this.renderCollection(\n   this.collection, \n   PersonView, \n   this.queryByHook(\'people-list\')\n);</code></pre><h3>People container:</h3><ul data-hook="people-list" class="list-group"></ul><p>Try it by clicking the buttons</p><div class="buttons btn-group"><button data-hook="reset" class="btn btn-default">.reset() </button><button data-hook="fetch" class="btn btn-default">.fetch() </button><button data-hook="shuffle" class="btn btn-default">.shuffle() </button><a href="/person/add" class="btn btn-default">Add Person</a></div><p>Events are always managed so you don\'t get any leaks.</p></section>';
     };
 

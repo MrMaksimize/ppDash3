@@ -2,6 +2,7 @@
 var Router = require('ampersand-router');
 var HomePage = require('./pages/home');
 var CollectionDemo = require('./pages/collection-demo');
+var Dashboard = require('./pages/dashboard');
 var InfoPage = require('./pages/info');
 var PersonAddPage = require('./pages/person-add');
 var PersonEditPage = require('./pages/person-edit');
@@ -21,8 +22,9 @@ module.exports = Router.extend({
 
     // ------- ROUTE HANDLERS ---------
     home: function () {
-        this.trigger('page', new HomePage({
-            model: me
+        this.trigger('page', new Dashboard({
+            model: me,
+            collection: app.dashboardElements
         }));
     },
 

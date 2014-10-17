@@ -21,6 +21,15 @@ module.exports = {
         window.me = new Me();
         this.people = new People();
 
+        // TODO - idk if this should be here really.
+        this.dashboardElements = new DashboardElements([
+          {
+            id: '1',
+            title: 'One',
+            placeholder: 'ONE PLACE'
+          }
+        ]);
+
         // init our URL handlers and the history tracker
         this.router = new Router();
 
