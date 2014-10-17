@@ -13,7 +13,7 @@ module.exports = View.extend({
     'model.widthLarge': { type: 'class', selector: '.chart-widget-wrapper' }
   },
   events: {
-      'click [data-hook~=action-delete]': 'handleRemoveClick'
+    'click [data-hook~=action-delete]': 'handleRemoveClick'
   },
   handleRemoveClick: function () {
       this.model.destroy();

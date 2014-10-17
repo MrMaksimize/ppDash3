@@ -18,7 +18,7 @@
 
     // body.jade compiled template
     templatizer["body"] = function tmpl_body() {
-        return '<body><nav role="navigation" class="navbar navbar-inverse navbar-fixed-top"><div class="container-fluid"><div class="navbar-header"><button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle"><span class="sr-only">Toggle Navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="/" class="navbar-brand">PP Dash #</a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav navbar-left"><li><a href="/">home</a></li><li><a href="/collections">collection demo</a></li><li><a href="/info">more info</a></li></ul></div></div></nav><div class="container-fluid"><main data-hook="page-container"></main></div></body>';
+        return '<body><nav role="navigation" class="navbar navbar-inverse navbar-fixed-top"><div class="container-fluid"><div class="navbar-header"><button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle"><span class="sr-only">Toggle Navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="/" class="navbar-brand">PP Dash #</a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav navbar-left"><li><a href="/">home</a></li><li><a href="/collections">collection demo</a></li><li><a href="/info">more info</a></li></ul><ul class="nav navbar-nav navbar-right"><li class="login"><a href="/login" data-hook="action-login">login</a></li><li class="name"><a href="/name">Name</a></li><li class="logout"><a href="/logout" data-hook="action-logout">logout</a></li></ul></div></div></nav><div class="container-fluid"><main data-hook="page-container"></main></div></body>';
     };
 
     // head.jade compiled template
@@ -58,7 +58,7 @@
 
     // pages/info.jade compiled template
     templatizer["pages"]["info"] = function tmpl_pages_info() {
-        return '<section class="page pageTwo"><h2>Simple Page Example</h2><p>This page was rendered by a simple page view file at client/pages/info.js.</p></section>';
+        return '<section class="page pageTwo"><h2>Simple Page Example</h2><p>This page was rendered by a simple page view file at client/pages/info.js.</p><button class="fb-login-btn">facebook</button></section>';
     };
 
     // pages/personAdd.jade compiled template
@@ -76,9 +76,14 @@
         return '<section class="page view-person"><h2 data-hook="name"></h2><img data-hook="avatar" width="80" height="80"/><div class="buttons"><a data-hook="edit" class="btn">Edit</a><button data-hook="delete" class="btn">Delete</button></div></section>';
     };
 
+    // pages/redirect.jade compiled template
+    templatizer["pages"]["redirect"] = function tmpl_pages_redirect() {
+        return '<section class="page pageTwo"><div class="loading"><span>&bull;</span><span>&bull;</span><span>&bull;</span></div><h2>Please close this window to continue.</h2></section>';
+    };
+
     // partials/navbar.jade compiled template
     templatizer["partials"]["navbar"] = function tmpl_partials_navbar() {
-        return '<nav role="navigation" class="navbar navbar-inverse navbar-fixed-top"><div class="container-fluid"><div class="navbar-header"><button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle"><span class="sr-only">Toggle Navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="/" class="navbar-brand">PP Dash #</a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav navbar-left"><li><a href="/">home</a></li><li><a href="/collections">collection demo</a></li><li><a href="/info">more info</a></li></ul></div></div></nav>';
+        return '<nav role="navigation" class="navbar navbar-inverse navbar-fixed-top"><div class="container-fluid"><div class="navbar-header"><button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle"><span class="sr-only">Toggle Navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="/" class="navbar-brand">PP Dash #</a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav navbar-left"><li><a href="/">home</a></li><li><a href="/collections">collection demo</a></li><li><a href="/info">more info</a></li></ul><ul class="nav navbar-nav navbar-right"><li class="login"><a href="/login" data-hook="action-login">login</a></li><li class="name"><a href="/name">Name</a></li><li class="logout"><a href="/logout" data-hook="action-logout">logout</a></li></ul></div></div></nav>';
     };
 
     return templatizer;

@@ -14,72 +14,93 @@ var setFavicon = require('favicon-setter');
 
 
 module.exports = View.extend({
-    template: templates.body,
-    initialize: function () {
-        // this marks the correct nav item selected
-        this.listenTo(app.router, 'page', this.handleNewPage);
-    },
-    events: {
-        'click a[href]': 'handleLinkClick'
-    },
-    render: function () {
-        // some additional stuff we want to add to the document head
-        document.head.appendChild(domify(templates.head()));
+  template: templates.body,
+  initialize: function () {
+    // this marks the correct nav item selected
+    this.listenTo(app.router, 'page', this.handleNewPage);
+  },
+  bindings: {
+    'model.signedIn': [
+      {
+        type: 'toggle',
+        yes: "li.logout",
+        no: "li.login"
+      }
+    ]
+  },
+  events: {
+    'click [data-hook~=action-login]': 'handleLogin',
+    'click a[href]': 'handleLinkClick'
+  },
+  render: function () {
+    // some additional stuff we want to add to the document head
+    document.head.appendChild(domify(templates.head()));
 
-        // main renderer
-        this.renderWithTemplate({me: me});
+    // main renderer
+    this.renderWithTemplate({ me: me });
 
-        // init and configure our page switcher
-        this.pageSwitcher = new ViewSwitcher(this.queryByHook('page-container'), {
-            show: function (newView, oldView) {
-                // it's inserted and rendered for me
-                document.title = _.result(newView, 'pageTitle') || "PP Dash #";
-                document.scrollTop = 0;
+    // init and configure our page switcher
+    this.pageSwitcher = new ViewSwitcher(this.queryByHook('page-container'), {
+      show: function (newView, oldView) {
+        // it's inserted and rendered for me
+        document.title = _.result(newView, 'pageTitle') || "PP Dash #";
+        document.scrollTop = 0;
 
-                // add a class specifying it's active
-                dom.addClass(newView.el, 'active');
+        // add a class specifying it's active
+        dom.addClass(newView.el, 'active');
 
-                // store an additional reference, just because
-                app.currentPage = newView;
-            }
-        });
+        // store an additional reference, just because
+        app.currentPage = newView;
+      }
+    });
 
-        // setting a favicon for fun (note, it's dynamic)
-        setFavicon('/images/ampersand.png');
-        return this;
-    },
+    // setting a favicon for fun (note, it's dynamic)
+    setFavicon('/images/ampersand.png');
+    return this;
+  },
 
-    handleNewPage: function (view) {
-        // tell the view switcher to render the new one
-        this.pageSwitcher.set(view);
+  handleLogin: function(e) {
+    var model = this.model;
+    hello.login('github', {'redirect_uri': 'http://localhost:3000/redirect'}).then(function() {
+      return hello('github').api('me');
+    }).then(function(profile) {
+      model.set('signedIn', true);
+      console.log(profile);
+      console.log(model);
+    });
+  },
 
-        // mark the correct nav item selected
-        this.updateActiveNav();
-    },
+  handleNewPage: function (view) {
+      // tell the view switcher to render the new one
+      this.pageSwitcher.set(view);
 
-    handleLinkClick: function (e) {
-        var aTag = e.target;
-        var local = aTag.host === window.location.host;
+      // mark the correct nav item selected
+      this.updateActiveNav();
+  },
 
-        // if it's a plain click (no modifier keys)
-        // and it's a local url, navigate internally
-        if (local && !e.ctrlKey && !e.shiftKey && !e.altKey && !e.metaKey) {
-            e.preventDefault();
-            app.navigate(aTag.pathname);
-        }
-    },
+  handleLinkClick: function (e) {
+      var aTag = e.target;
+      var local = aTag.host === window.location.host;
 
-    updateActiveNav: function () {
-        var path = window.location.pathname.slice(1);
+      // if it's a plain click (no modifier keys)
+      // and it's a local url, navigate internally
+      if (local && !e.ctrlKey && !e.shiftKey && !e.altKey && !e.metaKey) {
+          e.preventDefault();
+          app.navigate(aTag.pathname);
+      }
+  },
 
-        this.queryAll('.nav a[href]').forEach(function (aTag) {
-            var aPath = aTag.pathname.slice(1);
+  updateActiveNav: function () {
+      var path = window.location.pathname.slice(1);
 
-            if ((!aPath && !path) || (aPath && path.indexOf(aPath) === 0)) {
-                dom.addClass(aTag.parentNode, 'active');
-            } else {
-                dom.removeClass(aTag.parentNode, 'active');
-            }
-        });
-    }
+      this.queryAll('.nav a[href]').forEach(function (aTag) {
+          var aPath = aTag.pathname.slice(1);
+
+          if ((!aPath && !path) || (aPath && path.indexOf(aPath) === 0)) {
+              dom.addClass(aTag.parentNode, 'active');
+          } else {
+              dom.removeClass(aTag.parentNode, 'active');
+          }
+      });
+  }
 });

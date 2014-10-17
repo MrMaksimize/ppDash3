@@ -2,12 +2,15 @@ var AmpersandModel = require('ampersand-model');
 
 
 module.exports = AmpersandModel.extend({
-    type: 'user',
+    modelType: 'user',
     props: {
         id: ['string'],
         firstName: ['string', true, ''],
         lastName: ['string', true, ''],
         username: ['string'],
+    },
+    session: {
+      signedIn: ["boolean", false, false]
     },
     derived: {
         fullName: {

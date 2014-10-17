@@ -4,6 +4,7 @@ var HomePage = require('./pages/home');
 var CollectionDemo = require('./pages/collection-demo');
 var Dashboard = require('./pages/dashboard');
 var InfoPage = require('./pages/info');
+var RedirectPage = require('./pages/redirect');
 var PersonAddPage = require('./pages/person-add');
 var PersonEditPage = require('./pages/person-edit');
 var PersonViewPage = require('./pages/person-view');
@@ -12,6 +13,7 @@ var PersonViewPage = require('./pages/person-view');
 module.exports = Router.extend({
     routes: {
         '': 'home',
+        'redirect': 'redirect',
         'collections': 'collectionDemo',
         'info': 'info',
         'person/add': 'personAdd',
@@ -35,6 +37,11 @@ module.exports = Router.extend({
         }));
     },
 
+    redirect: function () {
+      this.trigger('page', new RedirectPage({
+          model: me
+      }));
+    },
     info: function () {
         this.trigger('page', new InfoPage({
             model: me
