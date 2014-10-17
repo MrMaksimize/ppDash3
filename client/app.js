@@ -24,10 +24,42 @@ module.exports = {
         // TODO - idk if this should be here really.
         this.dashboardElements = new DashboardElements([
           {
-            id: '1',
             title: 'One',
             placeholder: 'ONE PLACE'
-          }
+          },
+          {
+            title: 'Two',
+            placeholder: 'Two PLACE'
+          },
+          {
+            title: 'Three',
+            placeholder: 'ONE PLACE'
+          },
+          {
+            title: 'Four',
+            placeholder: 'ONE PLACE'
+          },
+          {
+            title: 'Five',
+            placeholder: 'ONE PLACE'
+          },
+          {
+            title: 'Six',
+            placeholder: 'ONE PLACE'
+          },
+          {
+            title: 'Seven',
+            placeholder: 'ONE PLACE'
+          },
+          {
+            title: 'Eight',
+            placeholder: 'ONE PLACE'
+          },
+          {
+            title: 'Nine',
+            placeholder: 'ONE PLACE'
+          },
+
         ]);
 
         // init our URL handlers and the history tracker

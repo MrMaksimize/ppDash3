@@ -1,14 +1,4 @@
 body
-  nav.navbar.navbar-default
-    div.container-fluid
-      div.navbar-header
-        a.navbar-brand(href='/') PP Dash #
-      ul.nav.navbar-nav
-        li
-            a(href="/") home
-          li
-            a(href="/collections") collection demo
-          li
-            a(href="/info") more info
-  .container
+  include partials/navbar
+  .container-fluid
     main(data-hook="page-container")

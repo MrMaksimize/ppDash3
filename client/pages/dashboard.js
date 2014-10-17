@@ -14,7 +14,7 @@ module.exports = PageView.extend({
     },
     render: function () {
         this.renderWithTemplate();
-        this.renderCollection(this.collection, DashboardElementView , this.queryByHook('people-list'));
+        this.renderCollection(this.collection, DashboardElementView , this.queryByHook('dashboard-elements'));
         /*if (!this.collection.length) {
             this.fetchCollection();
         }*/

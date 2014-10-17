@@ -14,10 +14,11 @@
     var templatizer = {};
     templatizer["includes"] = {};
     templatizer["pages"] = {};
+    templatizer["partials"] = {};
 
     // body.jade compiled template
     templatizer["body"] = function tmpl_body() {
-        return '<body><nav class="navbar navbar-default"><div class="container-fluid"><div class="navbar-header"><a href="/" class="navbar-brand">PP Dash #</a></div><ul class="nav navbar-nav"><li><a href="/">home</a></li><li><a href="/collections">collection demo</a></li><li><a href="/info">more info</a></li></ul></div></nav><div class="container"><main data-hook="page-container"></main></div></body>';
+        return '<body><nav role="navigation" class="navbar navbar-inverse navbar-fixed-top"><div class="container-fluid"><div class="navbar-header"><button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle"><span class="sr-only">Toggle Navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="/" class="navbar-brand">PP Dash #</a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav navbar-left"><li><a href="/">home</a></li><li><a href="/collections">collection demo</a></li><li><a href="/info">more info</a></li></ul></div></div></nav><div class="container-fluid"><main data-hook="page-container"></main></div></body>';
     };
 
     // head.jade compiled template
@@ -47,7 +48,7 @@
 
     // pages/dashboard.jade compiled template
     templatizer["pages"]["dashboard"] = function tmpl_pages_dashboard() {
-        return '<section class="page pageOne"><h2>Collection demo</h2><p>Intelligently rendering collections can be a bit tricky. </p><p><a href="https://github.com/ampersandjs/ampersand-view">ampersand-view\'s</a> <code>renderCollection()</code> method makes it simple.</p><p>The only code required to manage the collection is:</p><pre><code>this.renderCollection(\n   this.collection, \n   PersonView, \n   this.queryByHook(\'people-list\')\n);</code></pre><h3>People container:</h3><ul data-hook="people-list" class="list-group"></ul><p>Try it by clicking the buttons</p><div class="buttons btn-group"><button data-hook="reset" class="btn btn-default">.reset() </button><button data-hook="fetch" class="btn btn-default">.fetch() </button><button data-hook="shuffle" class="btn btn-default">.shuffle() </button><a href="/person/add" class="btn btn-default">Add Person</a></div><p>Events are always managed so you don\'t get any leaks.</p></section>';
+        return '<section class="page pageOne"><h3>People container:</h3><ul data-hook="dashboard-elements" class="list-group"></ul></section>';
     };
 
     // pages/home.jade compiled template
@@ -73,6 +74,11 @@
     // pages/personView.jade compiled template
     templatizer["pages"]["personView"] = function tmpl_pages_personView() {
         return '<section class="page view-person"><h2 data-hook="name"></h2><img data-hook="avatar" width="80" height="80"/><div class="buttons"><a data-hook="edit" class="btn">Edit</a><button data-hook="delete" class="btn">Delete</button></div></section>';
+    };
+
+    // partials/navbar.jade compiled template
+    templatizer["partials"]["navbar"] = function tmpl_partials_navbar() {
+        return '<nav role="navigation" class="navbar navbar-inverse navbar-fixed-top"><div class="container-fluid"><div class="navbar-header"><button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle"><span class="sr-only">Toggle Navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="/" class="navbar-brand">PP Dash #</a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav navbar-left"><li><a href="/">home</a></li><li><a href="/collections">collection demo</a></li><li><a href="/info">more info</a></li></ul></div></div></nav>';
     };
 
     return templatizer;
