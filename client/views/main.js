@@ -64,8 +64,8 @@ module.exports = View.extend({
       return hello('github').api('me');
     }).then(function(profile) {
       model.set({
-	'signedIn': true,
-	'firstName': profile.name
+        'signedIn': true,
+        'firstName': profile.name
       });
       console.log(profile);
       console.log(model);
