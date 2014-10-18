@@ -20,13 +20,12 @@ module.exports = View.extend({
     this.listenTo(app.router, 'page', this.handleNewPage);
   },
   bindings: {
-    'model.signedIn': [
-      {
-        type: 'toggle',
-        yes: "li.logout",
-        no: "li.login"
-      }
-    ]
+    'model.fullName': "li.name a",
+    'model.signedIn': {
+      type: 'toggle',
+      yes: "li.logout",
+      no: "li.login"
+    }
   },
   events: {
     'click [data-hook~=action-login]': 'handleLogin',
@@ -64,7 +63,10 @@ module.exports = View.extend({
     hello.login('github', {'redirect_uri': 'http://localhost:3000/redirect'}).then(function() {
       return hello('github').api('me');
     }).then(function(profile) {
-      model.set('signedIn', true);
+      model.set({
+	'signedIn': true,
+	'firstName': profile.name
+      });
       console.log(profile);
       console.log(model);
     });
