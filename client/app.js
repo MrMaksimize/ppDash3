@@ -18,12 +18,11 @@ module.exports = {
     var self = window.app = this;
 
     // create our global 'me' object and an empty collection for our people models.
-    window.me = new Me();
-    window.hello = hello.init({
-      facebook: "757007644390099",
+    hello.init({
       google: "922164580672-ejv6r4gd9ncqtvi75hconip77qh56bfv.apps.googleusercontent.com"
-      //github: "5e06643d73e77e5b7155"
     });
+
+    window.me = new Me();
     this.people = new People();
 
     // TODO - idk if this should be here really.
