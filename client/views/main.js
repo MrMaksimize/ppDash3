@@ -60,15 +60,24 @@ module.exports = View.extend({
 
   handleLogin: function(e) {
     var model = this.model;
-    hello.login('github', {'redirect_uri': 'http://localhost:3000/redirect'}).then(function() {
-      return hello('github').api('me');
+    // TODO -- consier the possibility that hello is not the way to go here.
+    hello.login('google', {
+      'redirect_uri': 'http://localhost:3000/redirect',
+      'scope': 'https://www.googleapis.com/auth/analytics.readonly,basic,email'
+    }).then(function(response) {
+      console.log(response);
+      // TODO -- move the following two lines to the extension of the dashboardElement model.
+      //gapi.auth.setToken(response.authResponse.access_token);
+      //return gapi.client.load('analytics', 'v3');
+      return hello('google').api('me');
     }).then(function(profile) {
+      console.log(profile);
       model.set({
         'signedIn': true,
-        'firstName': profile.name
+        'firstName': profile.first_name,
+        'lastName': profile.last_name,
+        'username': profile.email
       });
-      console.log(profile);
-      console.log(model);
     });
   },
 

@@ -5,7 +5,6 @@ var helmet = require('helmet');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var Moonboots = require('moonboots-express');
-var moonBootsConfig = require('./moonbootsConfig');
 var compress = require('compression');
 var config = require('getconfig');
 var semiStatic = require('semi-static');
@@ -94,7 +93,8 @@ new Moonboots({
         main: fixPath(appDir + '/app.js'),
         developmentMode: config.isDev,
         libraries: [
-          libDir + '/hello.all.min.js'
+          libDir + '/hello.all.min.js',
+          libDir + '/google.client.js',
         ],
         stylesheets: [
           fixPath(cssDir + '/bootstrap.css'),
@@ -134,4 +134,4 @@ new Moonboots({
 
 // listen for incoming http requests on the port as specified in our config
 app.listen(config.http.port);
-console.log("afd is running at: http://localhost:" + config.http.port + " Yep. That\'s pretty awesome.");
+console.log("PPDash 3 is running at: http://localhost:" + config.http.port + " Yep. That\'s pretty awesome.");

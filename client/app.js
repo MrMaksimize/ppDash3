@@ -21,7 +21,8 @@ module.exports = {
     window.me = new Me();
     window.hello = hello.init({
       facebook: "757007644390099",
-      github: "5e06643d73e77e5b7155"
+      google: "922164580672-ejv6r4gd9ncqtvi75hconip77qh56bfv.apps.googleusercontent.com"
+      //github: "5e06643d73e77e5b7155"
     });
     this.people = new People();
 
