@@ -11,6 +11,7 @@
     "ampersand-model": "^4.0.0",
     "ampersand-rest-collection": "^2.0.0",
     "ampersand-router": "^1.0.1",
+    "ampersand-state": "^4.3.12",
     "ampersand-view": "^7.0.1",
     "ampersand-view-switcher": "^1.0.2",
     "andlog": "^1.0.0",
@@ -21,10 +22,12 @@
     "favicon-setter": "^0.1.1",
     "getconfig": "^0.3.0",
     "hapi": "^6.0.2",
+    "lodash": "^2.4.1",
+    "moment": "^2.8.3",
     "moonboots_hapi": "^2.4.0",
+    "string": "^2.2.0",
     "stylizer": "^1.0.0",
-    "templatizer": "^1.0.0",
-    "underscore": "^1.6.0"
+    "templatizer": "^1.0.0"
   },
   "devDependencies": {},
   "jshintConfig": {

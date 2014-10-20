@@ -1,5 +1,4 @@
-// dashboardElement Model - dashboardElement.js
-var AmpModel = require("ampersand-model");
+var AmpModel = require("ampersand-state");
 
 
 module.exports = AmpModel.extend({

@@ -5,13 +5,12 @@
 // This view also handles all the 'document' level events such as keyboard shortcuts.
 var View = require('ampersand-view');
 var ViewSwitcher = require('ampersand-view-switcher');
-var _ = require('underscore');
+var _ = require('lodash');
 var domify = require('domify');
 var dom = require('ampersand-dom');
 var templates = require('../templates');
 var tracking = require('../helpers/metrics');
 var setFavicon = require('favicon-setter');
-
 
 module.exports = View.extend({
   template: templates.body,
@@ -67,8 +66,31 @@ module.exports = View.extend({
     }).then(function(response) {
       console.log(response);
       // TODO -- move the following two lines to the extension of the dashboardElement model.
-      //gapi.auth.setToken(response.authResponse.access_token);
-      //return gapi.client.load('analytics', 'v3');
+      gapi.client.setApiKey("AIzaSyBO9Lz6GstdDB_9eH8yIUQ5Z-_D0XuO83g");
+      var token = response.authResponse;
+      gapi.auth.setToken(token);
+      return gapi.client.load('analytics', 'v3');
+    }).then(function() {
+      //return gapi.client.analytics.management.accounts.list();
+      accountId = '31205267';
+      //return gapi.client.analytics.management.webproperties.list({'accountId': accountId})
+      webpropertyId = 'UA-31205267-1';
+      /*return gapi.client.analytics.management.profiles.list({
+        'accountId': accountId,
+        'webPropertyId': webpropertyId
+      });*/
+      profileId = "59122748";
+      /*return gapi.client.analytics.data.ga.get({
+        'ids': 'ga:' + profileId,
+        'start-date': '2014-10-06',
+        'end-date': '2014-10-20',
+        'metrics': 'ga:sessions',
+        'dimensions': 'ga:day'
+      });*/
+
+    }).then(function(results) {
+      console.log(results);
+    }).then(function() {
       return hello('google').api('me');
     }).then(function(profile) {
       console.log(profile);
