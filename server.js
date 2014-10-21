@@ -84,6 +84,7 @@ app.use(function (req, res, next) {
 var appDir = __dirname + '/client';
 var cssDir = __dirname + '/public/css';
 var libDir = __dirname + '/public/jslib';
+var nmDir = __dirname + '/node_modules';
 
 
 new Moonboots({
@@ -95,6 +96,7 @@ new Moonboots({
         libraries: [
           libDir + '/hello.all.min.js',
           libDir + '/google.client.js',
+          nmDir + '/bluebird/js/browser/bluebird.js',
         ],
         stylesheets: [
           fixPath(cssDir + '/bootstrap.css'),

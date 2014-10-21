@@ -14,29 +14,34 @@ module.exports = AmpersandModel.extend({
       authInfo: ["object", false]
     },
     derived: {
-        fullName: {
-            deps: ['firstName', 'lastName'],
-            cache: true,
-            fn: function () {
-                return this.firstName + ' ' + this.lastName;
-            }
-        },
-        initials: {
-            deps: ['firstName', 'lastName'],
-            cache: true,
-            fn: function () {
-                return (this.firstName.charAt(0) + this.lastName.charAt(0)).toUpperCase();
-            }
+      fullName: {
+          deps: ['firstName', 'lastName'],
+          cache: true,
+          fn: function () {
+              return this.firstName + ' ' + this.lastName;
+          }
+      },
+      initials: {
+          deps: ['firstName', 'lastName'],
+          cache: true,
+          fn: function () {
+            return (this.firstName.charAt(0) + this.lastName.charAt(0)).toUpperCase();
+          }
+      },
+      authResponse: {
+        cache: false,
+        fn: function() {
+          return hello('google').getAuthResponse();
         }
+      }
     },
+
     fetch: function() {
       var model = this;
-      // Until there is a real persistence layer, fetch acts as fetch and also as checkAuth.
-      var authResponse = hello('google').getAuthResponse();
-      console.log(authResponse);
-      // Check if auth already happened.
+      var authResponse = model.authResponse;
       if (authResponse) {
-        return hello('google').api('me').then(function(profile) {
+        // Wrapper to make Hello work with promises.
+        return Promise.resolve(hello('google').api('me')).then(function(profile) {
           model.set({
             'signedIn': true,
             'firstName': profile.first_name,
@@ -46,12 +51,23 @@ module.exports = AmpersandModel.extend({
           return Promise.resolve(authResponse);
         });
       }
-      // Otherwise...
+      else {
+        // Otherwise reject the promise.
+        return Promise.reject(401);
+      }
+    },
+
+    authenticate: function() {
+      var model = this;
+      var authResponse = model.authResponse;
+      if (authResponse)
+        return Promise.resolve(authResponse);
+      // If no saved authResponse, login;
       return hello.login('google', {
         'redirect_uri': config.google.redirect_uri,
         'scope': config.google.scope
       }).then(function() {
-        return this.fetch();
+        return model.fetch();
       });
     },
 

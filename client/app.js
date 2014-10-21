@@ -11,7 +11,6 @@ var People = require('./collections/persons');
 var DashboardElements = require('./collections/dashboardElements');
 var domReady = require('domready');
 
-
 module.exports = {
     // this is the the whole app initter
   blastoff: function () {
@@ -19,19 +18,28 @@ module.exports = {
 
     // Add config to window -- otherwise can't use the damn thing.
     window.config = config;
-    console.log(config);
 
     // create our global 'me' object and an empty collection for our people models.
     window.me = new Me();
+
     window.hello = hello.init({ google: config.google.clientId });
 
     // Fetch the me object.
-    me.fetch().then(function() {
+    me.fetch().then(function(authResponse) {
+      console.log(new Promise());
       // Set api key for all calls to Google.
       gapi.client.setApiKey(config.google.apiKey);
+      gapi.auth.setToken(authResponse);
+      //return gapi.client.load('analytics', 'v3');
+      // This is a potential problem point because it's async.
+      gapi.client.load('analytics', 'v3');
+    }).catch(function(err) {
+      console.log(err);
     });
 
-;
+
+
+
 
     this.people = new People();
 
@@ -82,6 +90,7 @@ module.exports = {
     // wait for document ready to render our main view
     // this ensures the document has a body, etc.
     domReady(function () {
+
       // init our main view
       var mainView = self.view = new MainView({
           model: me,
