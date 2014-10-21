@@ -12,6 +12,8 @@ var templates = require('../templates');
 var tracking = require('../helpers/metrics');
 var setFavicon = require('favicon-setter');
 
+var GADashboardElement = require('../models/gaDashboardElement');
+
 module.exports = View.extend({
   template: templates.body,
   initialize: function () {
@@ -64,7 +66,6 @@ module.exports = View.extend({
       'redirect_uri': 'http://localhost:3000/redirect',
       'scope': 'https://www.googleapis.com/auth/analytics.readonly,basic,email'
     }).then(function(response) {
-      console.log(response);
       // TODO -- move the following two lines to the extension of the dashboardElement model.
       gapi.client.setApiKey("AIzaSyBO9Lz6GstdDB_9eH8yIUQ5Z-_D0XuO83g");
       var token = response.authResponse;
@@ -87,6 +88,12 @@ module.exports = View.extend({
         'metrics': 'ga:sessions',
         'dimensions': 'ga:day'
       });*/
+      var gaDash = new GADashboardElement({
+	profileIds: ['59122748'],
+	metrics: ['ga:sessions'],
+	dimensions: ['ga:day']
+      });
+      return gaDash.fetchData();
 
     }).then(function(results) {
       console.log(results);

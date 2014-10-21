@@ -1,7 +1,7 @@
-var AmpModel = require("ampersand-state");
+var AmpState = require("ampersand-state");
 
 
-module.exports = AmpModel.extend({
+module.exports = AmpState.extend({
   props: {
     id: ["string"],
     title: ["string"],
