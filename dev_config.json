@@ -14,6 +14,12 @@
   },
   "client": {
     "apiUrl": "http://localhost:3000",
-    "debugMode": true
+    "debugMode": true,
+    "google": {
+      "redirect_uri": "http://localhost:3000/redirect",
+      "scope": "https://www.googleapis.com/auth/analytics.readonly,basic,email",
+      "apiKey": "AIzaSyBO9Lz6GstdDB_9eH8yIUQ5Z-_D0XuO83g",
+      "clientId": "922164580672-ejv6r4gd9ncqtvi75hconip77qh56bfv.apps.googleusercontent.com"
+    }
   }
 }

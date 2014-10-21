@@ -71,8 +71,8 @@ if (config.isDev) {
 // Set our client config cookie
 // -----------------
 app.use(function (req, res, next) {
-    res.cookie('config', JSON.stringify(config.client));
-    next();
+  res.cookie('config', JSON.stringify(config.client));
+  next();
 });
 
 

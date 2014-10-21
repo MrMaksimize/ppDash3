@@ -18,15 +18,15 @@ module.exports = DashboardElement.extend({
     query: {
       deps: ['profileIds', 'metrics', 'dimensions'],
       fn: function() {
-	var ids = _.map(this.profileIds, function(element) {
-	  return 'ga:' + element;
-	}).join();
+        var ids = _.map(this.profileIds, function(element) {
+          return 'ga:' + element;
+        }).join();
         return {
-	  "ids": ids,
+          "ids": ids,
           "start-date": "2014-10-06",
           "end-date": "2014-10-20",
           "metrics": this.metrics.join(),
-	  "dimensions": this.dimensions.join()
+          "dimensions": this.dimensions.join()
         }
       }
     }

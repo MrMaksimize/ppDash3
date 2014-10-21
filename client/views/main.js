@@ -89,9 +89,9 @@ module.exports = View.extend({
         'dimensions': 'ga:day'
       });*/
       var gaDash = new GADashboardElement({
-	profileIds: ['59122748'],
-	metrics: ['ga:sessions'],
-	dimensions: ['ga:day']
+        profileIds: ['59122748'],
+        metrics: ['ga:sessions'],
+        dimensions: ['ga:day']
       });
       return gaDash.fetchData();
 
