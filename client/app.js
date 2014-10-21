@@ -26,7 +26,6 @@ module.exports = {
 
     // Fetch the me object.
     me.fetch().then(function(authResponse) {
-      console.log(new Promise());
       // Set api key for all calls to Google.
       gapi.client.setApiKey(config.google.apiKey);
       gapi.auth.setToken(authResponse);
