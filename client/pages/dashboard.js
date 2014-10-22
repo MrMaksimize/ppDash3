@@ -1,6 +1,7 @@
 var PageView = require('./base');
 var templates = require('../templates');
 var DashboardElementView = require('../views/dashboardElement');
+var GADashboardElementView = require('../views/gaDashboardElement');
 
 
 module.exports = PageView.extend({
@@ -13,8 +14,20 @@ module.exports = PageView.extend({
         //'click [data-hook~=add]': 'addRandom'
     },
     render: function () {
+        // TODO -- it may make sense for these to be subviews.
         this.renderWithTemplate();
-        this.renderCollection(this.collection, DashboardElementView , this.queryByHook('dashboard-elements'));
+        // Render collection with custom caller for view.
+        this.renderCollection(
+          this.collection,
+          function(options) {
+            var namespace = options.model.getNamespace();
+            if (namespace === 'baseDashboardElement')
+              return new DashboardElementView(options);
+            if (namespace === 'gaDashboardElement')
+              return new GADashboardElementView(options);
+          },
+          this.queryByHook('dashboard-elements')
+        );
         /*if (!this.collection.length) {
             this.fetchCollection();
         }*/

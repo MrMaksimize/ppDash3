@@ -12,7 +12,6 @@ var templates = require('../templates');
 var tracking = require('../helpers/metrics');
 var setFavicon = require('favicon-setter');
 
-var GADashboardElement = require('../models/gaDashboardElement');
 
 module.exports = View.extend({
   template: templates.body,

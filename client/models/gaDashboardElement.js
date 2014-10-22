@@ -3,11 +3,18 @@ var DashboardElement = require("./dashboardElement");
 
 
 module.exports = DashboardElement.extend({
+  namespace: 'gaDashboardElement',
   props: {
+    //return gapi.client.analytics.management.accounts.list();
     //accountId = '31205267';
     accountId: ['string', false, ''],
+    //return gapi.client.analytics.management.webproperties.list({'accountId': accountId})
     //webpropertyId = 'UA-31205267-1';
     webpropertyId: ['string', false, ''],
+    //return gapi.client.analytics.management.profiles.list({
+    //  'accountId': accountId,
+    //  'webPropertyId': webpropertyId
+    //});
     //profileId = "59122748";
     // In core reporting query, this is ID
     profileIds: ['array', true],
@@ -32,6 +39,7 @@ module.exports = DashboardElement.extend({
     }
   },
   fetchData: function() {
+    console.log('gadash fetch data');
     return gapi.client.analytics.data.ga.get(this.query);
   }
 });
@@ -51,9 +59,7 @@ module.exports = DashboardElement.extend({
       gapi.auth.setToken(token);
       return gapi.client.load('analytics', 'v3');
     }).then(function() {
-      //return gapi.client.analytics.management.accounts.list();
       accountId = '31205267';
-      //return gapi.client.analytics.management.webproperties.list({'accountId': accountId})
       webpropertyId = 'UA-31205267-1';
       return gapi.client.analytics.management.profiles.list({
         'accountId': accountId,

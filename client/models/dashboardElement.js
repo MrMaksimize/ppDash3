@@ -2,6 +2,8 @@ var AmpState = require("ampersand-state");
 
 
 module.exports = AmpState.extend({
+  modelType: 'dashboardElement',
+  namespace: 'baseDashboardElement',
   props: {
     id: ["string"],
     title: ["string"],

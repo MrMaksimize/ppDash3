@@ -9,6 +9,8 @@ var MainView = require('./views/main');
 var Me = require('./models/me');
 var People = require('./collections/persons');
 var DashboardElements = require('./collections/dashboardElements');
+var DashboardElement = require('./models/dashboardElement');
+var GADashboardElement = require('./models/gaDashboardElement');
 var domReady = require('domready');
 
 module.exports = {
@@ -36,52 +38,27 @@ module.exports = {
       console.log(err);
     });
 
+    this.dashboardElements = new DashboardElements();
 
+    var testDashboardElement = new DashboardElement({
+      title: 'One',
+      placeholder: 'One Placeholder.'
+    });
 
+    this.dashboardElements.add(testDashboardElement);
 
+    var testGADashboardElement = new GADashboardElement({
+      title: 'Ga Dashboard Element',
+      profileIds: ['59122748'],
+      metrics: ['ga:sessions'],
+      dimensions: ['ga:day']
+    });
 
-    this.people = new People();
+    this.dashboardElements.add(testGADashboardElement);
 
+    // Initialize unused people collection
+    //this.people = new People();
 
-    // TODO - idk if this should be here really.
-    this.dashboardElements = new DashboardElements([
-      {
-        title: 'One',
-        placeholder: 'ONE PLACE'
-      },
-      {
-        title: 'Two',
-        placeholder: 'Two PLACE'
-      },
-      {
-        title: 'Three',
-        placeholder: 'ONE PLACE'
-      },
-      {
-        title: 'Four',
-        placeholder: 'ONE PLACE'
-      },
-      {
-        title: 'Five',
-        placeholder: 'ONE PLACE'
-      },
-      {
-        title: 'Six',
-        placeholder: 'ONE PLACE'
-      },
-      {
-        title: 'Seven',
-        placeholder: 'ONE PLACE'
-      },
-      {
-        title: 'Eight',
-        placeholder: 'ONE PLACE'
-      },
-      {
-        title: 'Nine',
-        placeholder: 'ONE PLACE'
-      },
-    ]);
 
     // init our URL handlers and the history tracker
     this.router = new Router();
@@ -92,8 +69,8 @@ module.exports = {
 
       // init our main view
       var mainView = self.view = new MainView({
-          model: me,
-          el: document.body
+        model: me,
+        el: document.body
       });
 
       // ...and render it

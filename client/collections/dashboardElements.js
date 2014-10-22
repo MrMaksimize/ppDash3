@@ -2,6 +2,4 @@ var Collection = require('ampersand-collection');
 var DashboardElement = require('../models/dashboardElement');
 
 
-module.exports = Collection.extend({
-    model: DashboardElement
-});
+module.exports = Collection.extend({});
