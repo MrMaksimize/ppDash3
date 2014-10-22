@@ -60,9 +60,6 @@ module.exports = AmpersandModel.extend({
     authenticate: function() {
       var model = this;
       var authResponse = model.authResponse;
-      if (authResponse)
-        return Promise.resolve(authResponse);
-      // If no saved authResponse, login;
       return hello.login('google', {
         'redirect_uri': config.google.redirect_uri,
         'scope': config.google.scope

@@ -11,7 +11,9 @@ var dom = require('ampersand-dom');
 var templates = require('../templates');
 var tracking = require('../helpers/metrics');
 var setFavicon = require('favicon-setter');
-
+var DashboardElements = require('../collections/dashboardElements');
+var DashboardElement = require('../models/dashboardElement');
+var GADashboardElement = require('../models/gaDashboardElement');
 
 module.exports = View.extend({
   template: templates.body,
@@ -55,9 +57,40 @@ module.exports = View.extend({
 
     // setting a favicon for fun (note, it's dynamic)
     setFavicon('/images/ampersand.png');
+    this.loadBaseData();
     return this;
   },
 
+  loadBaseData: function() {
+    var testDashboardElement = new DashboardElement({
+      title: 'One',
+      placeholder: 'One Placeholder.'
+    });
+
+    var testGADashboardElement = new GADashboardElement({
+      title: 'Ga Dashboard Element',
+      profileIds: ['59122748'],
+      metrics: ['ga:sessions'],
+      dimensions: ['ga:day']
+    });
+
+    // Fetch the me object.
+    me.fetch().then(function(authResponse) {
+      // Set api key for all calls to Google.
+      gapi.client.setApiKey(config.google.apiKey);
+      gapi.auth.setToken(authResponse);
+      //return gapi.client.load('analytics', 'v3');
+      // This is a potential problem point because it's async.
+      return gapi.client.load('analytics', 'v3');
+    }).then(function() {
+      app.dashboardElements.add(testDashboardElement);
+      app.dashboardElements.add(testGADashboardElement);
+    }).catch(function(err) {
+      console.log(err);
+    });
+  },
+
+  //TODO - review this.
   handleLogin: function(e) {
     // Fetch the me object.
     me.authenticate().then(function(authResponse) {
@@ -66,7 +99,7 @@ module.exports = View.extend({
       gapi.auth.setToken(authResponse);
       //return gapi.client.load('analytics', 'v3');
       // This is a potential problem point because it's async.
-      gapi.client.load('analytics', 'v3');
+      //gapi.client.load('analytics', 'v3');
     }).error(function(err) {
       console.log(err);
     });

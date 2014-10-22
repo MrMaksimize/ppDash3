@@ -26,39 +26,10 @@ module.exports = {
 
     window.hello = hello.init({ google: config.google.clientId });
 
-    // Fetch the me object.
-    me.fetch().then(function(authResponse) {
-      // Set api key for all calls to Google.
-      gapi.client.setApiKey(config.google.apiKey);
-      gapi.auth.setToken(authResponse);
-      //return gapi.client.load('analytics', 'v3');
-      // This is a potential problem point because it's async.
-      gapi.client.load('analytics', 'v3');
-    }).catch(function(err) {
-      console.log(err);
-    });
-
     this.dashboardElements = new DashboardElements();
-
-    var testDashboardElement = new DashboardElement({
-      title: 'One',
-      placeholder: 'One Placeholder.'
-    });
-
-    this.dashboardElements.add(testDashboardElement);
-
-    var testGADashboardElement = new GADashboardElement({
-      title: 'Ga Dashboard Element',
-      profileIds: ['59122748'],
-      metrics: ['ga:sessions'],
-      dimensions: ['ga:day']
-    });
-
-    this.dashboardElements.add(testGADashboardElement);
 
     // Initialize unused people collection
     //this.people = new People();
-
 
     // init our URL handlers and the history tracker
     this.router = new Router();

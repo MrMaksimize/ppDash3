@@ -38,9 +38,18 @@ module.exports = DashboardElement.extend({
       }
     }
   },
+  loadDependencies: function() {
+    // load deps like analytics client here.
+  },
   fetchData: function() {
     console.log('gadash fetch data');
-    return gapi.client.analytics.data.ga.get(this.query);
+    console.log(gapi);
+    if (gapi.client.analytics)
+      return gapi.client.analytics.data.ga.get(this.query);
+
+    return gapi.client.load('analytics', 'v3').then(function() {
+      return gapi.client.analytics.data.ga.get(this.query);
+    });
   }
 });
 
