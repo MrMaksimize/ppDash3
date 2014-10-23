@@ -1,6 +1,5 @@
 var AmpState = require("ampersand-state");
 
-
 module.exports = AmpState.extend({
   modelType: 'dashboardElement',
   namespace: 'baseDashboardElement',
@@ -24,6 +23,12 @@ module.exports = AmpState.extend({
       deps: ["widths"],
       fn: function () {
         return "col-md-" + this.widths.md;
+      }
+    },
+    containerId: {
+      deps: ["title"],
+      fn: function () {
+        return this.title.replace(/\s/g, "-").toLowerCase();
       }
     }
     // TODO -- do I need to implement large?

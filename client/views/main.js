@@ -71,11 +71,13 @@ module.exports = View.extend({
       title: 'Ga Dashboard Element',
       profileIds: ['59122748'],
       metrics: ['ga:sessions'],
-      dimensions: ['ga:day']
+      //sort: ['ga:day'],
+      dimensions: ['ga:date']
     });
 
     // Fetch the me object.
     me.fetch().then(function(authResponse) {
+      // Should this part be done as part of the model extension for gadashboardelement?
       // Set api key for all calls to Google.
       gapi.client.setApiKey(config.google.apiKey);
       gapi.auth.setToken(authResponse);
@@ -100,7 +102,7 @@ module.exports = View.extend({
       //return gapi.client.load('analytics', 'v3');
       // This is a potential problem point because it's async.
       //gapi.client.load('analytics', 'v3');
-    }).error(function(err) {
+    }).catch(function(err) {
       console.log(err);
     });
   },

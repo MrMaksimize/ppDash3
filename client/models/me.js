@@ -60,10 +60,10 @@ module.exports = AmpersandModel.extend({
     authenticate: function() {
       var model = this;
       var authResponse = model.authResponse;
-      return hello.login('google', {
+      return Promise.resolve(hello.login('google', {
         'redirect_uri': config.google.redirect_uri,
         'scope': config.google.scope
-      }).then(function() {
+      })).then(function() {
         return model.fetch();
       });
     },

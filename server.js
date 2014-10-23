@@ -97,11 +97,14 @@ new Moonboots({
           libDir + '/hello.all.min.js',
           libDir + '/google.client.js',
           nmDir + '/bluebird/js/browser/bluebird.js',
+          nmDir + '/d3/d3.min.js',
+          nmDir + '/c3/c3.min.js',
         ],
         stylesheets: [
           fixPath(cssDir + '/bootstrap.css'),
           fixPath(cssDir + '/cosmo.css'),
           fixPath(cssDir + '/keen.dashboard.css'),
+          fixPath(nmDir  + '/c3/c3.css'),
           fixPath(cssDir + '/app.css')
         ],
         browserify: {

@@ -10,13 +10,14 @@ module.exports = View.extend({
     'model.placeholder': '.chart-stage',
     'model.widthSmall': { type: 'class', selector: '.chart-widget-wrapper' },
     'model.widthMedium': { type: 'class', selector: '.chart-widget-wrapper' },
-    'model.widthLarge': { type: 'class', selector: '.chart-widget-wrapper' }
+    'model.widthLarge': { type: 'class', selector: '.chart-widget-wrapper' },
+    'model.containerId': { type: 'class', selector: '.chart-widget-wrapper' }
   },
   events: {
     'click [data-hook~=action-delete]': 'handleRemoveClick'
   },
   handleRemoveClick: function () {
-      this.model.destroy();
-      return false;
+    this.model.destroy();
+    return false;
   }
 });

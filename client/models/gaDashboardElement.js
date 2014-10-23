@@ -19,6 +19,7 @@ module.exports = DashboardElement.extend({
     // In core reporting query, this is ID
     profileIds: ['array', true],
     metrics: ['array', true],
+    sort: ['array', true],
     dimensions: ['array', true],
   },
   derived: {
@@ -30,9 +31,10 @@ module.exports = DashboardElement.extend({
         }).join();
         return {
           "ids": ids,
-          "start-date": "2014-10-06",
+          "start-date": "2014-09-07",
           "end-date": "2014-10-20",
           "metrics": this.metrics.join(),
+          //"sort": this.sort.join(),
           "dimensions": this.dimensions.join()
         }
       }
