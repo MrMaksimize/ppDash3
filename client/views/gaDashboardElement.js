@@ -14,7 +14,6 @@ module.exports = DashboardElementView.extend({
         xCol.push(element[0]);
         sessionsCol.push(element[1]);
       });
-      console.log(xCol);
       var chart = c3.generate({
         bindto: '.' + that.model.containerId + ' .chart-stage',
         data: {
