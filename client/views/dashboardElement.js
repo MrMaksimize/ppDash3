@@ -8,10 +8,10 @@ module.exports = View.extend({
     // Can also use hooks here for binding.
     'model.title': '.chart-title',
     'model.placeholder': '.chart-stage',
-    'model.widthSmall': { type: 'class', selector: '.chart-widget-wrapper' },
-    'model.widthMedium': { type: 'class', selector: '.chart-widget-wrapper' },
-    'model.widthLarge': { type: 'class', selector: '.chart-widget-wrapper' },
-    'model.containerId': { type: 'class', selector: '.chart-widget-wrapper' }
+    'model.width': { type: 'attribute', selector: 'li.chart-widget-wrapper', name: "data-w" },
+    'model.height': { type: 'attribute', selector: 'li.chart-widget-wrapper', name: "data-h" },
+    'model.xPos': { type: 'attribute', selector: 'li.chart-widget-wrapper', name: "data-x" },
+    'model.yPos': { type: 'attribute', selector: 'li.chart-widget-wrapper', name: "data-y" },
   },
   events: {
     'click [data-hook~=action-delete]': 'handleRemoveClick'

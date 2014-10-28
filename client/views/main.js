@@ -67,6 +67,24 @@ module.exports = View.extend({
       placeholder: 'One Placeholder.'
     });
 
+    var testDashboardElement2 = new DashboardElement({
+      title: 'Two',
+      placeholder: 'Two Placeholder.'
+    });
+
+    var testDashboardElement3 = new DashboardElement({
+      title: 'three',
+      placeholder: 'three Placeholder.'
+    });
+
+    var testDashboardElement4 = new DashboardElement({
+      title: 'Four',
+      placeholder: 'Four Placeholder.'
+    });
+
+
+
+
     var testGADashboardElement = new GADashboardElement({
       title: 'Ga Dashboard Element',
       profileIds: ['59122748'],
@@ -85,8 +103,15 @@ module.exports = View.extend({
       // This is a potential problem point because it's async.
       return gapi.client.load('analytics', 'v3');
     }).then(function() {
+      console.log('add');
       app.dashboardElements.add(testDashboardElement);
-      app.dashboardElements.add(testGADashboardElement);
+      app.dashboardElements.add(testDashboardElement2);
+      app.dashboardElements.add(testDashboardElement3);
+      setTimeout(function(){
+        console.log('add one more');
+        app.dashboardElements.add(testDashboardElement4);
+      }, 5000);
+      //app.dashboardElements.add(testGADashboardElement);
     }).catch(function(err) {
       console.log(err);
     });

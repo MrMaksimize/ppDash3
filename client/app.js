@@ -12,11 +12,14 @@ var DashboardElements = require('./collections/dashboardElements');
 var DashboardElement = require('./models/dashboardElement');
 var GADashboardElement = require('./models/gaDashboardElement');
 var domReady = require('domready');
+require ('jquery-ui');
 
 module.exports = {
     // this is the the whole app initter
   blastoff: function () {
     var self = window.app = this;
+
+    window.$ = $
 
     // Add config to window -- otherwise can't use the damn thing.
     window.config = config;

@@ -96,14 +96,19 @@ new Moonboots({
         libraries: [
           libDir + '/hello.all.min.js',
           libDir + '/google.client.js',
+          libDir + '/jquery.min.js',
+          libDir + '/jquery-ui.min.js',
           nmDir + '/bluebird/js/browser/bluebird.js',
           nmDir + '/d3/d3.min.js',
           nmDir + '/c3/c3.min.js',
+          nmDir + '/grid-list/src/gridList.js',
+          nmDir + '/grid-list/src/jquery.gridList.js',
         ],
         stylesheets: [
           fixPath(cssDir + '/bootstrap.css'),
           fixPath(cssDir + '/cosmo.css'),
           fixPath(cssDir + '/keen.dashboard.css'),
+          fixPath(cssDir + '/jquery-ui.min.css'),
           fixPath(nmDir  + '/c3/c3.css'),
           fixPath(cssDir + '/app.css')
         ],

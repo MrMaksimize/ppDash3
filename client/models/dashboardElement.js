@@ -7,30 +7,17 @@ module.exports = AmpState.extend({
     id: ["string"],
     title: ["string"],
     placeholder: ["string"],
-    widths: {
-      type: "object",
-      default: function() { return { sm: "6", md:"4" } }
-    }
+    width: ["number", false, 1],
+    height: ["number", false, 1],
+    xPos: ["number", false],
+    yPos: ["number", false],
   },
   derived: {
-    widthSmall: {
-      deps: ["widths"],
-      fn: function () {
-        return "col-md-" + this.widths.sm;
-      }
-    },
-    widthMedium: {
-      deps: ["widths"],
-      fn: function () {
-        return "col-md-" + this.widths.md;
-      }
-    },
     containerId: {
       deps: ["title"],
       fn: function () {
         return this.title.replace(/\s/g, "-").toLowerCase();
       }
     }
-    // TODO -- do I need to implement large?
   }
 });

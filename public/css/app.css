@@ -1,3 +1,6 @@
 body {
   background: #fff;
 }
+ul.dashboard-elements-container li {
+  list-style-type: none;
+}

@@ -15,6 +15,7 @@ module.exports = PageView.extend({
     },
     render: function () {
         // TODO -- it may make sense for these to be subviews.
+        var model = this;
         this.renderWithTemplate();
         // Render collection with custom caller for view.
         this.renderCollection(
@@ -28,6 +29,19 @@ module.exports = PageView.extend({
           },
           this.queryByHook('dashboard-elements')
         );
+
+
+        /*this.collection.on('add', function(what) {
+          console.log('add on = ' + model.collection.length);
+          //$('#grid').gridList('resize', model.collection.length);
+          /*$('#grid').gridList({
+            rows: 2
+          },
+          {
+            handle: '.chart-title'
+          });
+
+        })*/
         /*if (!this.collection.length) {
             this.fetchCollection();
         }*/

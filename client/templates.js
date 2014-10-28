@@ -28,7 +28,7 @@
 
     // includes/dashboardElement.jade compiled template
     templatizer["includes"]["dashboardElement"] = function tmpl_includes_dashboardElement() {
-        return '<div class="chart-widget-wrapper"><div class="chart-wrapper"><div class="chart-title">Cell Title</div><div class="chart-stage">Placeholder</div><div class="chart-notes">Notes</div></div></div>';
+        return '<li class="chart-widget-wrapper"><div class="chart-wrapper"><div class="chart-title">Cell Title</div><div class="chart-stage">Placeholder</div><div class="chart-notes">Notes</div></div></li>';
     };
 
     // includes/formInput.jade compiled template
@@ -48,7 +48,7 @@
 
     // pages/dashboard.jade compiled template
     templatizer["pages"]["dashboard"] = function tmpl_pages_dashboard() {
-        return '<section class="page pageOne"><ul data-hook="dashboard-elements" class="list-group"></ul></section>';
+        return '<section class="page pageOne"><ul id="grid" data-hook="dashboard-elements" class="list-group dashboard-elements-container"></ul></section>';
     };
 
     // pages/home.jade compiled template
